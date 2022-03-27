@@ -10,8 +10,12 @@ def weather_by_city(city_name):
         'num_of_days': 1,
         'lang': 'ru',
     }
-    result = requests.get(weather_url, params=params)
-    return result.json()
+    try:
+        result = requests.get(weather_url, params=params)
+        result.raise_for_status()
+        return result.json()
+    except (requests.RequestException, ValueError):
+        return False
 
 
 def get_weather(city_name):

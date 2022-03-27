@@ -1,4 +1,4 @@
-from service.server import app
+from service.view.server import app
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
