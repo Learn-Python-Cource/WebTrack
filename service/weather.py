@@ -2,7 +2,7 @@ import requests
 
 
 def weather_by_city(city_name):
-    weather_url = "http://api.worldweatheronline.com/premium/v1/weather.ashx"
+    weather_url = 'http://api.worldweatheronline.com/premium/v1/weather.ashx'
     params = {
         'key': '4375ed2187ac4207a4a62831222703',
         'q': city_name,
@@ -13,6 +13,7 @@ def weather_by_city(city_name):
     result = requests.get(weather_url, params=params)
     return result.json()
 
+
 def get_weather(city_name):
     weather = weather_by_city(city_name)
 
@@ -20,6 +21,6 @@ def get_weather(city_name):
         if 'current_condition' in weather['data']:
             try:
                 return weather['data']['current_condition'][0]
-            except(IndexError, TypeError):
+            except (IndexError, TypeError):
                 return False
     return False
