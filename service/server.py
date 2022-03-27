@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from service import weather
 
@@ -6,13 +6,13 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
+def index():
     city = 'Barnaul,Russia'
     current_weather = weather.get_weather(city)
     if current_weather:
-        return 'Сейчас B {0} {1}, ощущается как {2}'.format(
-            city,
-            current_weather['temp_C'],
-            current_weather['FeelsLikeC'],
+        return render_template(
+            'index.html',
+            city=city,
+            weather_text=current_weather,
         )
     return 'Hello!'
