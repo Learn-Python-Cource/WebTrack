@@ -8,6 +8,7 @@ authors = ["astra <zorkin.roman@gmail.com>"]
 python = "^3.10"
 Flask = "^2.0.3"
 requests = "^2.27.1"
+pydantic = "^1.9.0"
 
 [tool.poetry.dev-dependencies]
 # fix bandit 1.7.3-4 errors
