@@ -2,6 +2,7 @@ import requests
 
 from service.config import WEATHER_API_KEY, WEATHER_DEFAULT_CITY
 
+
 def weather_by_city(city_name):
     weather_url = 'http://api.worldweatheronline.com/premium/v1/weather.ashx'
     params = {
