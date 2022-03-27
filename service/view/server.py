@@ -10,7 +10,7 @@ page_title = 'WEB TRACK LP24'
 @app.route('/')
 def index():
     city = 'Barnaul,Russia'
-    current_weather = weather.get_weather(city)
+    city, current_weather = weather.get_weather(city)
     return render_template(
         'index.html',
         page_title=page_title,

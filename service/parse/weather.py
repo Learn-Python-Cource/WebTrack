@@ -1,10 +1,11 @@
 import requests
 
+from service.config import WEATHER_API_KEY, WEATHER_DEFAULT_CITY
 
 def weather_by_city(city_name):
     weather_url = 'http://api.worldweatheronline.com/premium/v1/weather.ashx'
     params = {
-        'key': '4375ed2187ac4207a4a62831222703',
+        'key': WEATHER_API_KEY,
         'q': city_name,
         'format': 'json',
         'num_of_days': 1,
@@ -18,13 +19,13 @@ def weather_by_city(city_name):
         return False
 
 
-def get_weather(city_name):
+def get_weather(city_name=WEATHER_DEFAULT_CITY):
     weather = weather_by_city(city_name)
 
     if 'data' in weather:
         if 'current_condition' in weather['data']:
             try:
-                return weather['data']['current_condition'][0]
+                return city_name, weather['data']['current_condition'][0]
             except (IndexError, TypeError):
                 return False
     return False
