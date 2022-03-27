@@ -1,6 +1,6 @@
-import requests
 from pathlib import Path
 
+import requests
 from bs4 import BeautifulSoup
 
 html_file = Path('service/parse/tmp/python.html')
@@ -17,15 +17,14 @@ class UrlReader:
             result = requests.get(self.url)
             result.raise_for_status()
             return result.text
-        except(requests.RequestException, ValueError):
-            print('Сетевая ошибка')
+        except (requests.RequestException, ValueError):
             return False
 
     def _news_parser(self):
         html = self._get_news()
         if html:
-            with open(html_file, 'w', encoding='utf-8') as f:
-                f.write(html)
+            with open(html_file, 'w', encoding='utf-8') as file_html:
+                file_html.write(html)
             return html
         return 'download error'
 
@@ -39,6 +38,4 @@ class SoupParser(UrlReader):
         soup = BeautifulSoup(self.html, 'html.parser')
         ul_block = soup.find('ul', class_='list-recent-posts')
         h3_block = ul_block.find_all('h3')
-        h3_text = [block.get_text() for block in h3_block]
-
-        return h3_text
+        return [block.get_text() for block in h3_block]
