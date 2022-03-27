@@ -22,9 +22,9 @@ def index():
 @app.route('/news')
 def py_news():
     url = 'https://www.python.org/blogs/'
-    current_news = news.UrlReader(url)
+    current_news = news.SoupParser(url)
     return render_template(
         'news.html',
         page_title=page_title,
-        news=current_news.news_parser(),
+        news=current_news.get_python_news(),
     )
