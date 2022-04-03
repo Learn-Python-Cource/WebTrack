@@ -13,7 +13,7 @@
   <body>
     <h1>
         {% for event in news %}
-           <li> {{ event }}</li>
+           <li> {{ event.title }} [{{ event.published }}]</li>
         {% endfor %}
     </h1>
 
