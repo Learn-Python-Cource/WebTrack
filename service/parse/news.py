@@ -1,7 +1,10 @@
+from datetime import datetime
 from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+
+from service.repo.news import save_news
 
 html_file = Path('service/parse/tmp/python.html')
 
@@ -36,6 +39,26 @@ class SoupParser(UrlReader):
 
     def get_python_news(self):
         soup = BeautifulSoup(self.html, 'html.parser')
-        ul_block = soup.find('ul', class_='list-recent-posts')
-        h3_block = ul_block.find_all('h3')
-        return [block.get_text() for block in h3_block]
+        ul_block = soup.find('ul', class_='list-recent-posts').find_all('li')
+        result_news = []
+        for news in ul_block:
+            title = news.find('a').text
+            url = news.find('a')['href']
+            published = news.find('time').text
+            try:
+                published = datetime.strptime(published, '%Y-%m-%d')
+            except ValueError:
+                published = datetime.now()
+            save_news(
+                title=title,
+                url=url,
+                published=published,
+            )
+            result_news.append({
+                'title': title,
+                'url': url,
+                'published': published,
+            })
+
+        return result_news
+

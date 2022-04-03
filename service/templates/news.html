@@ -11,11 +11,11 @@
     <title>{{ page_title }}</title>
   </head>
   <body>
-    <h1>
+    <h3>
         {% for event in news %}
-           <li> {{ event }}</li>
+        <li> <a href="{{ event.url }}">{{ event.title }} [{{ event.published.strftime('%Y-%m-%d') }}]</a></li>
         {% endfor %}
-    </h1>
+    </h3>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
