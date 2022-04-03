@@ -5,9 +5,9 @@ db = SQLAlchemy()
 
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
-    url = db.Column(db.String, unique=True, nullable=False)
-    published = db.Column(db.DateTime, nullable=False)
+    title = db.Column(db.String, nullable=True)
+    url = db.Column(db.String, nullable=True)
+    published = db.Column(db.DateTime, nullable=True)
     text = db.Column(db.Text, nullable=True)
 
     def __repr__(self):

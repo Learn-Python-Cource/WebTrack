@@ -15,7 +15,7 @@ def save_news(title, url, published):
         url=url,
         published=published,
     )
-    db.session(new_news)
+    db.session.add(new_news)
     db.session.commit()
 
 
