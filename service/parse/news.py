@@ -4,19 +4,9 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-from service.models import db, News
+from service.repo.news import save_news
 
 html_file = Path('service/parse/tmp/python.html')
-
-
-def save_news(title, url, published):
-    new_news = News(
-        title=title,
-        url=url,
-        published=published,
-    )
-    db.session.add(new_news)
-    db.session.commit()
 
 
 class UrlReader:
