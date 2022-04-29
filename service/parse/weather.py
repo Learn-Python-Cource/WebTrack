@@ -26,6 +26,4 @@ def weather_by_city() -> dict[str, Any]:
 
 def get_weather(city: str) -> tuple[str, dict[str, Any]]:
     weather = weather_by_city()
-    if 'main' in weather:
-        return city, weather.get('main', {'temp': 'нет информации'})
-    return city, {'temp': 'нет информации'}
+    return city, weather.get('main', {'temp': 'нет информации'})
