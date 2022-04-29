@@ -13,7 +13,7 @@
   <body>
     <h1>
         {% if weather_text %}
-            Погода в городе "{{ city }}": {{ weather_text.temp_C }}, ощущается как {{ weather_text.FeelsLikeC }}
+            Погода в городе "{{ city }}": {{ weather_text.temp }}, ощущается как {{ weather_text.feels_like }}
         {% else %}
             Сервис погоды временно недоступен
         {% endif %}
