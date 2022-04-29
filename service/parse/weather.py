@@ -1,15 +1,19 @@
+from typing import Any
+
 import requests
 
-from service.config import WEATHER_API_KEY, WEATHER_DEFAULT_CITY
+from service.config import load_from_env
+
+app_config = load_from_env()
 
 
-def weather_by_city(city_name):
-    weather_url = 'http://api.worldweatheronline.com/premium/v1/weather.ashx'
+def weather_by_city() -> dict[str, Any]:
+    weather_url = app_config.weather_url
     params = {
-        'key': WEATHER_API_KEY,
-        'q': city_name,
-        'format': 'json',
-        'num_of_days': 1,
+        'appid': app_config.weather_api_key,
+        'lat': app_config.weather_city[0],
+        'lon': app_config.weather_city[1],
+        'units': 'metric',
         'lang': 'ru',
     }
     try:
@@ -17,16 +21,9 @@ def weather_by_city(city_name):
         result.raise_for_status()
         return result.json()
     except (requests.RequestException, ValueError):
-        return False
+        return {'message': 'false'}
 
 
-def get_weather(city_name=WEATHER_DEFAULT_CITY):
-    weather = weather_by_city(city_name)
-
-    if 'data' in weather:
-        if 'current_condition' in weather['data']:
-            try:
-                return city_name, weather['data']['current_condition'][0]
-            except (IndexError, TypeError):
-                return False
-    return False
+def get_weather(city: str) -> tuple[str, dict[str, Any]]:
+    weather = weather_by_city()
+    return city, weather.get('main', {'temp': 'нет информации'})
