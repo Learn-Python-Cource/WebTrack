@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 db = SQLAlchemy()
 
 
-class News(db.Model):
+class News(db.Model):  # type: ignore
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=True)
     url = db.Column(db.String, nullable=True)
@@ -16,7 +16,7 @@ class News(db.Model):
         return '<News {0} {1}>'.format(self.title, self.url)
 
 
-class User(db.Model, UserMixin):
+class User(db.Model, UserMixin):  # type: ignore
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)  # noqa: WPS432
     password = db.Column(db.String(128))  # noqa: WPS432
@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
         return self.role == 'admin'
 
     def insert_password(self, password):
-        self.password = generate_password_hash(password)
+        self.password = generate_password_hash(password)  # noqa: WPS601
 
     def check_password(self, password):
         return check_password_hash(self.password, password)

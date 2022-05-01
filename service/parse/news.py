@@ -34,7 +34,7 @@ class UrlReader:
 
 class SoupParser(UrlReader):
 
-    def __init__(self, url):
+    def __init__(self, url):  # noqa: WPS612
         super().__init__(url)
 
     def get_python_news(self):

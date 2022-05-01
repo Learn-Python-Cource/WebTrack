@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from flask_login import login_required, current_user
+from flask_login import current_user, login_required
 
 from service.config import app_config
 from service.parse import weather
@@ -24,5 +24,3 @@ def index():
 def admin_page():
     if current_user.is_admin:
         return 'Hello admin!'
-    else:
-        return 'You are not admin'
