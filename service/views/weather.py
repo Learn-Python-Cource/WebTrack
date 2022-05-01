@@ -1,14 +1,12 @@
 from flask import Blueprint, render_template
 
-from service.config import load_from_env
+from service.config import app_config
 from service.parse import weather
 
-weather_app = Blueprint('weather_app', __name__)
-
-app_config = load_from_env()
+view = Blueprint('weather_app', __name__)
 
 
-@weather_app.route('/')
+@view.route('/')
 def index():
     city = 'Barnaul'
     city, current_weather = weather.get_weather(city)

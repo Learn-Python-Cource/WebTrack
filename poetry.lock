@@ -310,6 +310,18 @@ async = ["asgiref (>=3.2)"]
 dotenv = ["python-dotenv"]
 
 [[package]]
+name = "flask-login"
+version = "0.6.0"
+description = "User authentication and session management for Flask."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+Flask = ">=1.0.4"
+Werkzeug = ">=1.0.1"
+
+[[package]]
 name = "flask-sqlalchemy"
 version = "2.5.1"
 description = "Adds SQLAlchemy support to your Flask application."
@@ -740,7 +752,7 @@ email = ["email-validator"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "9b15913b02063320acf7dc3a517482a2972479356636e9253c96dc3ec16a3a46"
+content-hash = "0a189bbcb8ccb2ee817447af0204f282a3930d95e712564ee44bf4e7dce97060"
 
 [metadata.files]
 astor = [
@@ -843,6 +855,10 @@ flake8-string-format = [
 flask = [
     {file = "Flask-2.0.3-py3-none-any.whl", hash = "sha256:59da8a3170004800a2837844bfa84d49b022550616070f7cb1a659682b2e7c9f"},
     {file = "Flask-2.0.3.tar.gz", hash = "sha256:e1120c228ca2f553b470df4a5fa927ab66258467526069981b3eb0a91902687d"},
+]
+flask-login = [
+    {file = "Flask-Login-0.6.0.tar.gz", hash = "sha256:aa84fcfb4c3cf09ca58c08e816b7bce73f1349ba1cf13d00d8dffc5872d5fcf6"},
+    {file = "Flask_Login-0.6.0-py3-none-any.whl", hash = "sha256:5cb01ce4dc253967b6ac722a11e46de83b6272ef7a19cc7b5725ae636916d04d"},
 ]
 flask-sqlalchemy = [
     {file = "Flask-SQLAlchemy-2.5.1.tar.gz", hash = "sha256:2bda44b43e7cacb15d4e05ff3cc1f8bc97936cc464623424102bfc2c35e95912"},
