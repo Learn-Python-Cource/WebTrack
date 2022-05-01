@@ -1,6 +1,6 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 db = SQLAlchemy()
 
@@ -13,14 +13,14 @@ class News(db.Model):
     text = db.Column(db.Text, nullable=True)
 
     def __repr__(self) -> str:
-        return '<News {} {}>'.format(self.title, self.url)
+        return '<News {0} {1}>'.format(self.title, self.url)
 
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column()
-    password = db.Column()
-    role = db.Column()
+    username = db.Column(db.String(64), index=True, unique=True)
+    password = db.Column(db.String(128))
+    role = db.Column(db.String(10), index=True)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)

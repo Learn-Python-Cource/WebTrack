@@ -61,4 +61,3 @@ class SoupParser(UrlReader):
             })
 
         return result_news
-

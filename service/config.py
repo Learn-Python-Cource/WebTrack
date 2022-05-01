@@ -25,7 +25,7 @@ def load_from_env():
         weather_api_key=os.environ['WEATHER_API_KEY'],
         title=os.environ['TITLE'],
         db_url=db_url,
-        secret_key=os.environ['SECRET_KEY']
+        secret_key=os.environ['SECRET_KEY'],
     )
 
 
