@@ -1,14 +1,13 @@
 from flask import Blueprint, render_template
+from flask_login import current_user, login_required
 
-from service.config import load_from_env
+from service.config import app_config
 from service.parse import weather
 
-weather_app = Blueprint('weather_app', __name__)
-
-app_config = load_from_env()
+view = Blueprint('weather', __name__)
 
 
-@weather_app.route('/')
+@view.route('/')
 def index():
     city = 'Barnaul'
     city, current_weather = weather.get_weather(city)
@@ -18,3 +17,10 @@ def index():
         city=city,
         weather_text=current_weather,
     )
+
+
+@view.route('/admin')
+@login_required
+def admin_page():
+    if current_user.is_admin:
+        return 'Hello admin!'

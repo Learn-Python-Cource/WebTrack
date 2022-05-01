@@ -1,4 +1,4 @@
-from service.models import db, News
+from service.models import News, db
 
 
 def get_all():

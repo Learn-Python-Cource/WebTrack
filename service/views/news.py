@@ -3,10 +3,10 @@ from flask import Blueprint, render_template
 from service.config import app_config
 from service.repo.news import get_all
 
-news_app = Blueprint('news_app', __name__)
+view = Blueprint('news', __name__)
 
 
-@news_app.route('/')
+@view.route('/')
 def py_news():
     my_news = get_all()
     return render_template(

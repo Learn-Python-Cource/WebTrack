@@ -15,5 +15,11 @@
         ".venv": false,
         "*.pyc": true,
         "**/__pycache__": true
-    }
+    },
+    "cSpell.words": [
+        "pydantic",
+        "werkzeug",
+        "wtforms"
+    ],
+    "cSpell.language": "en,ru"
 }  

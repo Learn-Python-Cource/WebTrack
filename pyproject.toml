@@ -12,6 +12,7 @@ pydantic = "^1.9.0"
 beautifulsoup4 = "^4.10.0"
 Flask-SQLAlchemy = "^2.5.1"
 Flask-WTF = "^1.0.1"
+Flask-Login = "^0.6.0"
 
 [tool.poetry.dev-dependencies]
 # fix bandit 1.7.3-4 errors
