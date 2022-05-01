@@ -22,6 +22,10 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(128))  # noqa: WPS432
     role = db.Column(db.String(10), index=True)
 
+    @property
+    def is_admin(self):
+        return self.role == 'admin'
+
     def insert_password(self, password):
         self.password = generate_password_hash(password)
 

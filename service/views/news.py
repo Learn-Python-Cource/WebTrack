@@ -3,7 +3,7 @@ from flask import Blueprint, render_template
 from service.config import app_config
 from service.repo.news import get_all
 
-view = Blueprint('news_app', __name__)
+view = Blueprint('news', __name__)
 
 
 @view.route('/')
