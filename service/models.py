@@ -18,11 +18,11 @@ class News(db.Model):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    password = db.Column(db.String(128))
+    username = db.Column(db.String(64), index=True, unique=True)  # noqa: WPS432
+    password = db.Column(db.String(128))  # noqa: WPS432
     role = db.Column(db.String(10), index=True)
 
-    def set_password(self, password):
+    def insert_password(self, password):
         self.password = generate_password_hash(password)
 
     def check_password(self, password):
