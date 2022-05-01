@@ -23,10 +23,10 @@ class User(db.Model, UserMixin):
     role = db.Column()
 
     def set_password(self, password):
-        pass
+        self.password = generate_password_hash(password)
 
     def check_password(self, password):
-        pass
+        return check_password_hash(self.password, password)
 
     def __repr__(self) -> str:
         return '<User {0} id={1}>'.format(self.username, self.id)
